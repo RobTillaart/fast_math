@@ -43,6 +43,7 @@ void divmod10(uint32_t in, uint32_t &div, uint8_t &mod);
 uint8_t dec2bcdRef(uint8_t value);   //  reference implementation.
 uint8_t dec2bcd(uint8_t value);
 uint8_t dec2bcdRTC(uint8_t value);
+uint8_t bcd2decRef(uint8_t value);
 uint8_t bcd2dec(uint8_t value);
 
 
@@ -81,8 +82,9 @@ uint32_t ping2mm32(uint32_t in);
 
 
 //  temperature compensated speed of sound distance
-float ping2cm_temp(uint16_t duration, int Celsius);
-float ping2inch_temp(uint16_t duration, int Celsius);
+float ping2cm_tempC(uint16_t duration, int Celsius);
+float ping2inch_tempC(uint16_t duration, int Celsius);
+//  TODO ping2inch_tempF.
 
 
 #ifdef __cplusplus

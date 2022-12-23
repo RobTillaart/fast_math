@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [0.2.0] - 2022-10-29
 - initial release as library
 - add examples
+- redo a lot of testing
+- add readme.md
+
 
 ----
 

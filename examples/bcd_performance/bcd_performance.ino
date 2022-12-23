@@ -51,12 +51,28 @@ void setup()
   Serial.print("\n");
   delay(100);
 
+
   Serial.print("dec2bcdRTC:\t");
   delay(10);
   start = micros();
   for (uint8_t x = 0; x < 100; x++)
   {
     z = dec2bcdRTC(x);
+  }
+  stop = micros();
+  Serial.print(stop - start);
+  Serial.print("\t");
+  Serial.print(z);
+  Serial.print("\n");
+  delay(100);
+
+  // not 100% correct but it measures performance
+  Serial.print("bcd2decRef:\t");
+  delay(10);
+  start = micros();
+  for (uint8_t x = 0; x < 100; x++)
+  {
+    z = bcd2decRef(x);
   }
   stop = micros();
   Serial.print(stop - start);

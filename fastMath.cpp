@@ -9,6 +9,10 @@
 #include "fastMath.h"
 
 
+///////////////////////////////////////////////////////////
+//
+//  DIV
+//
 void divmod10(uint32_t in, uint32_t &div, uint8_t &mod)
 {
     uint32_t x = (in|1) - (in >> 2);   //  div = in/10 <~~> div = 0.75*in/8
@@ -25,20 +29,23 @@ void divmod10(uint32_t in, uint32_t &div, uint8_t &mod)
 }
 
 
+///////////////////////////////////////////////////////////
+//
+//  BCD
+//
 uint8_t dec2bcdRef(uint8_t value)
 {
+  //  two common versions.
+  // return (value / 10 * 16 +  value % 10);
   return value + 6 * (value / 10);
 }
 
 
 uint8_t dec2bcd(uint8_t value)
 {
-  //  this trick works faster for range value = 0..100.
-  uint16_t a = value;
-  uint8_t  b = (a * 26) >> 8;   //  magic * 26 / 256 ~~ / 10
-  uint8_t  c = value + b * 6;
-  if ((c & 0x0F) == 0x0F) c -= 6;  //  correction above 60.
-  return c;
+  uint8_t b = (value * 103) >> 10;
+  return (b * 16 + value - (b * 10)); 
+  // return value + 6 * b;   //  compiles equally fast.
 }
 
 
@@ -48,7 +55,14 @@ uint8_t dec2bcdRTC(uint8_t value)
   uint16_t a = value;
   uint8_t  b = (a * 26) >> 8;   //  magic * 26 / 256 ~~ / 10
   uint8_t  c = value + b * 6;
+  //  if ((c & 0x0F) == 0x0F) c -= 6;  // extends range to 0..99
   return c;
+}
+
+
+uint8_t bcd2decRef(uint8_t value)
+{
+  return value/16 * 10 + value % 10;
 }
 
 
@@ -58,6 +72,10 @@ uint8_t bcd2dec(uint8_t value)
 }
 
 
+///////////////////////////////////////////////////////////
+//
+//  POLYNOME
+//
 float polynome(float x, float ar[], uint8_t degree)
 {
   float value = ar[0];
@@ -75,6 +93,10 @@ float polynome(float x, float ar[], uint8_t degree)
 }
 
 
+///////////////////////////////////////////////////////////
+//
+//  PING
+//
 uint16_t ping2cm(uint16_t in)
 {
   //  divide by 29.41176 == * 0.034
@@ -193,7 +215,7 @@ uint32_t ping2mm32(uint32_t in)
 
 
 //  temperature in Celsius
-float ping2cm_temp(uint16_t duration, int Celsius )
+float ping2cm_tempC(uint16_t duration, int Celsius )
 {
   //
   //  return duration * 331.45 * sqrt(1 + temp / 273.0) / 10000;
@@ -203,7 +225,7 @@ float ping2cm_temp(uint16_t duration, int Celsius )
 }
 
 
-float ping2inch_temp(uint16_t duration, int Celsius )
+float ping2inch_tempC(uint16_t duration, int Celsius )
 {
   //
   //  return duration * 331.45 * sqrt(1 + temp / 273.0) / 10000;
@@ -211,6 +233,12 @@ float ping2inch_temp(uint16_t duration, int Celsius )
   //  return duration * 331.45 * (1 + temp * (1.0 / 546.0)) * 0.0001;  //  little less accurate sqrt
   return duration * (0.013049 + Celsius * (0.013049 / 546.0));     //  minimized.
 }
+
+
+///////////////////////////////////////////////////////////
+//
+//  TODO
+//
 
 
 //  -- END OF FILE --

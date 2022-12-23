@@ -13,7 +13,8 @@ Arduino library for fast math algorithms.
 
 ## Description
 
-The **experimental** fastMath library is a collection of algorithms that are faster than the default code. 
+The fastMath library is a collection of **experimental** algorithms that are faster 
+than the default code. 
 These algorithms are to be used when you are in a need for speed. 
 Only tested on Arduino UNO.
 
@@ -25,19 +26,34 @@ Also improvements or other fast code is welcome. Please open an issue.
 
 ## Interface
 
-#### BCD
+### BCD
 
 - **uint8_t dec2bcd(uint8_t value)**
 - **uint8_t bcd2dec(uint8_t value)**
 
-Two conversion modules, typical used in an RTC to convert register values
+Two conversion functions, typical used in an RTC to convert register values
 in **BCD** = binary coded decimal, to normal integer values.
 
-- **dec2bcdRTC(uint8_t value)**
-Even faster version, for the range 0..60. Typical to be used in RTC's.
+Even faster version, for the range 0..60. Limited to be used in RTC's.
+- **dec2bcdRTC(uint8_t value)** (does 0.68 correct)
 
 
-#### divmod10
+Backgrounder - https://forum.arduino.cc/t/faster-dec2bcd-routine-especial-for-rtc-libraries/180741/13
+
+
+Indicative performance Arduino UNO.
+
+|  function       |   us   |  factor |  notes  |
+|:----------------|:------:|:-------:|:-------:|
+|  dec2bcd (ref)  |  5.88  |   1.0   |  100 iterations
+|  dec2bcd        |  1.04  |   4.8   |
+|  dec2bcdRTC     |  0.88  |   5.7   |
+|                 |        |         |
+|  bcd2dec (ref)  |  5.96  |   1.0   |
+|  bcd2dec        |  2.20  |   2.7   |
+
+
+### DIV
 
 - **void divmod10(uint32_t in, uint32_t &div, uint8_t &mod)**
 function calculates both div and modulo faster than normal /10 and %10.
@@ -54,7 +70,7 @@ Indicative performance Arduino UNO.
 |  divmod10  |   9.1  |   4.1   | 
 
 
-#### PING
+### PING
 
 For distance sensors that work with a acoustic pulse, one often see the formula:
 ```cm = us / 29;``` to calculate the distance in cm.
@@ -71,11 +87,15 @@ The functions assume a speed of sound of 340 m/sec.
 
 - **uint16_t ping2cm(uint16_t in)** sos = 340 m/sec
 - **uint16_t ping2mm(uint16_t in)** sos = 340 m/sec
-- **float ping2cm_temp(uint16_t duration, int temp)** temperature corrected speed of sound.
-  - duration in us, temp in Celsius.
-  - this function is relative slow, a faster version is not tested.
 - **uint16_t ping2inch(uint16_t in)** sos = 340 m/sec
 - **uint16_t ping2sixteenths(uint16_t in)** sos = 340 m/sec
+
+#### temperature corrected
+
+- **float ping2cm_tempC(uint16_t duration, int Celsius)** temperature corrected speed of sound.
+  - duration in us, temperature in Celsius.
+  - this function is relative slow, a faster version is not tested.
+- **float ping2inch_tempC(uint16_t duration, int Celsius)** temperature corrected speed of sound.
 
 
 Indicative performance Arduino UNO.
@@ -86,13 +106,13 @@ Indicative performance Arduino UNO.
 |  us \* 0.0345     |  18.5  |   2.0   |
 |  ping2cm          |  3.08  |  12.4   | sos == 340 m/s
 |  ping2mm          |  5.66  |   6.7   | sos == 340 m/s
-|  ping2cm_temp     |  36.8  |   1.0   | adds temperature correction.
+|  ping2cm_tempC    |  36.8  |   1.0   | adds temperature correction.
 |                   |        |         |
 |  ping2inch        |  3.90  |   9.8   | not as exact as inches are rather large units
 |  ping2sixteenths  |  8.11  |   4.8   | way more accurate than inches
 
 
-#### polynome
+### polynome
 
 Routine to evaluate a polynome and be able to change its weights runtime.
 E.g   y = 3x^2 + 5x + 7 ==> ar\[3] = { 7, 5, 3 };  degree = 2;
@@ -124,8 +144,10 @@ See examples.
 #### could
 - There are several divide functions to be included.
   div3(), div5(), div7(), div10(), mod10()
-  These need more testing.
-- **float ping2inch_temp(uint16_t in, int temp)** Fahrenheit
+  These need more testing (range)
+- **float ping2inch_tempF(uint16_t in, int Fahrenheit)**
+- **uint32_t ping2inch(uint32_t in)** + sixteenth
+- **uint32_t ping2sixteenth(uint32_t in)**
 - constants?
   - GOLDEN_RATIO 1.61803398875
 
