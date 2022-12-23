@@ -65,7 +65,7 @@ Indicative performance Arduino UNO.
 ### DIV
 
 - **void divmod10(uint32_t in, uint32_t \*div, uint8_t \*mod)**
-function calculates both div and modulo faster than normal /10 and %10.
+function calculates both divide and modulo 10 faster than the default  / 10 and % 10.
 
 This function is very useful for extracting the individual digits.
 Typical use is print digits on a display, in a file or send them as ASCII.
@@ -78,9 +78,9 @@ Indicative performance Arduino UNO.
 |  i / 10    |  38.1  |   1.0   |
 |  divmod10  |   9.1  |   4.1   | 
 
+Backgrounder - https://forum.arduino.cc/t/divmod10-a-fast-replacement-for-10-and-10-unsigned/163586
 
-For every element of N (natural numbers) one could develop a divmodN()
-function. 
+Note: For every element of N (natural numbers) one could develop a divmodN() function. 
 
 
 ### PING
@@ -152,7 +152,10 @@ See examples.
 
 
 #### should
-- ** uint16_t divmod10()** 16 bit overload version 
+- **uint16_t divmod10()** 16 bit overload version 
+- **uint32_t div10(x, \*d)** would be a bit faster 
+- **uint32_t mod10(x, \*m)** would be a bit faster too
+
 - unit tests
   - or examples that test a lot.
 - examples

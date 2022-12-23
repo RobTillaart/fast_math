@@ -10,8 +10,8 @@
 
 
 uint32_t start, stop;
-uint32_t x, y;
-uint8_t z;
+uint32_t x, d;
+uint8_t m;
 
 
 void setup()
@@ -26,8 +26,8 @@ void setup()
 
   x = random(2000000000ULL);
   start = micros();
-  y = x / 10;
-  z = x % 10;
+  d = x / 10;
+  m = x % 10;
   stop = micros();
   Serial.print("div + mod: ");
   Serial.print("\t");
@@ -35,14 +35,14 @@ void setup()
   Serial.print("\t");
   Serial.print(x);
   Serial.print("\t");
-  Serial.print(y);
+  Serial.print(d);
   Serial.print("\t");
-  Serial.print(z);
+  Serial.print(m);
   Serial.print("\n");
   delay(100);
 
   start = micros();
-  divmod10(x, &y, &z);
+  divmod10(x, &d, &m);
   stop = micros();
   Serial.print("divmod10:  ");
   Serial.print("\t");
@@ -50,9 +50,9 @@ void setup()
   Serial.print("\t");
   Serial.print(x);
   Serial.print("\t");
-  Serial.print(y);
+  Serial.print(d);
   Serial.print("\t");
-  Serial.print(z);
+  Serial.print(m);
   Serial.print("\n");
   delay(100);
 
@@ -61,14 +61,14 @@ void setup()
   for (uint32_t x = 0; x <= 1000000; x++)
   {
     if (x % 100000 == 0) Serial.println(x);
-    divmod10(x, &y, &z);
-    if (x != (y * 10 + z))
+    divmod10(x, &d, &m);
+    if (x != (d * 10 + m))
     {
       Serial.print(x);
       Serial.print("\t");
-      Serial.print(y);
+      Serial.print(d);
       Serial.print("\t");
-      Serial.print(z);
+      Serial.print(m);
       Serial.print("\n");
     }
   }
