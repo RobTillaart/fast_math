@@ -1,4 +1,4 @@
-# Change Log fastMath
+# Change Log fast_math
 
 All notable changes to this project will be documented in this file.
 
@@ -11,9 +11,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - add examples
 - redo a lot of testing
 - add readme.md
-
+- renamed to fast_math (ESP32 conflict)
 
 ----
 
 ## [0.1.0] - 27 October 2013
-- initial version.
+- initial version fastMath

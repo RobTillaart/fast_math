@@ -1,42 +1,51 @@
 
-[![Arduino CI](https://github.com/RobTillaart/fastMath/workflows/Arduino%20CI/badge.svg)](https://github.com/marketplace/actions/arduino_ci)
-[![Arduino-lint](https://github.com/RobTillaart/fastMath/actions/workflows/arduino-lint.yml/badge.svg)](https://github.com/RobTillaart/fastMath/actions/workflows/arduino-lint.yml)
-[![JSON check](https://github.com/RobTillaart/fastMath/actions/workflows/jsoncheck.yml/badge.svg)](https://github.com/RobTillaart/fastMath/actions/workflows/jsoncheck.yml)
-[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/RobTillaart/fastMath/blob/master/LICENSE)
-[![GitHub release](https://img.shields.io/github/release/RobTillaart/fastMath.svg?maxAge=3600)](https://github.com/RobTillaart/fastMath/releases)
+[![Arduino CI](https://github.com/RobTillaart/fast_math/workflows/Arduino%20CI/badge.svg)](https://github.com/marketplace/actions/arduino_ci)
+[![Arduino-lint](https://github.com/RobTillaart/fast_math/actions/workflows/arduino-lint.yml/badge.svg)](https://github.com/RobTillaart/fast_math/actions/workflows/arduino-lint.yml)
+[![JSON check](https://github.com/RobTillaart/fast_math/actions/workflows/jsoncheck.yml/badge.svg)](https://github.com/RobTillaart/fast_math/actions/workflows/jsoncheck.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/RobTillaart/fast_math/blob/master/LICENSE)
+[![GitHub release](https://img.shields.io/github/release/RobTillaart/fast_math.svg?maxAge=3600)](https://github.com/RobTillaart/fast_math/releases)
 
 
-# fastMath
+# fast_math
 
 Arduino library for fast math algorithms.
 
 
 ## Description
 
-The fastMath library is a collection of **experimental** algorithms that are faster 
+The fast_math library is a collection of algorithms that are faster 
 than the default code. 
 These algorithms are to be used when you are in a need for speed. 
-Only tested on Arduino UNO.
+Only tested on Arduino UNO as one of the "slower" boards.
 
-**Warning:** verify if the code works for your project. (no warranty)
+**Warning:** verify if the algorithms works for your project. (no warranty).
 
-Note: I'm interested in your feedback e.g. results on other platforms.
+Note: I am interested in your feedback e.g. results on other platforms.
 Also improvements or other fast code is welcome. Please open an issue.
+
+These algorithms are collected and improved over a long time, and started
+with improving decades ago when computers were slower than an Arduino UNO.
+
+Related libraries:
+
+- https://github.com/RobTillaart/fastTrig Gonio functions (less exact but faster)
 
 
 ## Interface
 
+```cpp
+#include "fast_math.h"
+```
+
+
 ### BCD
 
+Two conversion functions, typical used in an RTC to convert register values
+in **BCD** = binary coded decimal, to normal integer values and back..
 - **uint8_t dec2bcd(uint8_t value)**
 - **uint8_t bcd2dec(uint8_t value)**
-
-Two conversion functions, typical used in an RTC to convert register values
-in **BCD** = binary coded decimal, to normal integer values.
-
-Even faster version, for the range 0..60. Limited to be used in RTC's.
-- **dec2bcdRTC(uint8_t value)** (does 0.68 correct)
-
+- **dec2bcdRTC(uint8_t value)** Even faster version, for the range 0..60. 
+Limited to be used in RTC's. (in fact it does 0..68 correct)
 
 Backgrounder - https://forum.arduino.cc/t/faster-dec2bcd-routine-especial-for-rtc-libraries/180741/13
 
@@ -55,7 +64,7 @@ Indicative performance Arduino UNO.
 
 ### DIV
 
-- **void divmod10(uint32_t in, uint32_t &div, uint8_t &mod)**
+- **void divmod10(uint32_t in, uint32_t \*div, uint8_t \*mod)**
 function calculates both div and modulo faster than normal /10 and %10.
 
 This function is very useful for extracting the individual digits.
@@ -68,6 +77,10 @@ Indicative performance Arduino UNO.
 |  i % 10    |  38.2  |   1.0   |
 |  i / 10    |  38.1  |   1.0   |
 |  divmod10  |   9.1  |   4.1   | 
+
+
+For every element of N (natural numbers) one could develop a divmodN()
+function. 
 
 
 ### PING
@@ -130,18 +143,24 @@ See example.
 
 See examples.
 
+
 ## Future
 
 #### must
 - update documentation
+  - links, research?
+
 
 #### should
-- split up in multiple .h files, one per group.
-  - fastMath.h includes all individual .h files.
+- ** uint16_t divmod10()** 16 bit overload version 
 - unit tests
+  - or examples that test a lot.
 - examples
 
+
 #### could
+- split up in multiple .h files, one per group.
+  - fast_math.h includes all individual .h files.
 - There are several divide functions to be included.
   div3(), div5(), div7(), div10(), mod10()
   These need more testing (range)

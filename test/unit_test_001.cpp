@@ -2,8 +2,8 @@
 //    FILE: unit_test_001.cpp
 //  AUTHOR: Rob Tillaart
 //    DATE: 2022-11-29
-// PURPOSE: unit tests for the fastMath library
-//          https://github.com/RobTillaart/map2colour
+// PURPOSE: unit tests for the fast_math library
+//          https://github.com/RobTillaart/fast_math
 //          https://github.com/Arduino-CI/arduino_ci/blob/master/REFERENCE.md
 //
 
@@ -23,7 +23,7 @@
 #include <ArduinoUnitTests.h>
 
 #include "Arduino.h"
-#include "fastMath.h"
+#include "fast_math.h"
 
 
 unittest_setup()

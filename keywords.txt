@@ -1,4 +1,4 @@
-# Syntax Colouring Map For fastMath
+# Syntax Colouring Map For fast_math
 
 # Data types (KEYWORD1)
 

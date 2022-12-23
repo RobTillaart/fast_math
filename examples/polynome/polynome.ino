@@ -2,11 +2,11 @@
 //    FILE: polynome.ino
 //  AUTHOR: Rob Tillaart
 // PURPOSE: polynome test
-//     URL: https://github.com/RobTillaart/fastMath
+//     URL: https://github.com/RobTillaart/fast_math
 
 
 #include "Arduino.h"
-#include "fastMath.h"
+#include "fast_math.h"
 
 
 uint32_t start, stop;
