@@ -16,7 +16,7 @@
 //
 void divmod10(uint32_t in, uint32_t *div, uint8_t *mod)
 {
-    uint32_t x = (in|1) - (in >> 2);   //  div = in/10 <~~> div = 0.75*in/8
+    uint32_t x = (in|1) - (in >> 2);   //  div = in/10 <~~> div = (0.8*in) / 8
     uint32_t q = (x >> 4) + x;         //  0.796875 *in
     x = q;
     q = (q >> 8) + x;                  //  0.799987793 * in

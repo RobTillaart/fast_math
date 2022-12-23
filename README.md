@@ -92,16 +92,23 @@ Note that as this is the turnaround distance (forth & back) so one
 need a divide by two often. (maybe I should include that)
 
 This library has functions to improve on speed.
-The maximum input is 65535 us ==> 2250 cm or 22500 mm.
-This is enough range for most ping sensors, typical < 10 mtr.
-(the functions can be extended to uint32_t)
+The maximum input for the 16 bit functions is 65535 us 
+which translates to approx. 2250 cm or 22500 mm  (20+ meter)
+This is enough range for most ping sensors, which are typical 
+in the range 0 - 10 meter.
 
 The functions assume a speed of sound of 340 m/sec.
 
-- **uint16_t ping2cm(uint16_t in)** sos = 340 m/sec
-- **uint16_t ping2mm(uint16_t in)** sos = 340 m/sec
-- **uint16_t ping2inch(uint16_t in)** sos = 340 m/sec
-- **uint16_t ping2sixteenths(uint16_t in)** sos = 340 m/sec
+16 bit interface
+- **uint16_t ping2cm(uint16_t in)**
+- **uint16_t ping2mm(uint16_t in)**
+- **uint16_t ping2inch(uint16_t in)**
+- **uint16_t ping2sixteenths(uint16_t in)**
+
+32 bit interface
+- **uint32_t ping2cm32(uint32_t in)**
+- **uint32_t ping2mm32(uint32_t in)**
+
 
 #### temperature corrected
 
@@ -134,14 +141,10 @@ E.g   y = 3x^2 + 5x + 7 ==> ar\[3] = { 7, 5, 3 };  degree = 2;
   
 This function is useful for evaluating a polynome many times and be able to
 adjust the weights. This can be used for finding the optimal weights to fit
-a curve for a polynome of degree N.
+a curve for a polynome of degree N. See example.
 
-See example.
-
-
-## Operation
-
-See examples.
+Another application can be to implement a calibration / offset function that
+can be tuned (runtime).
 
 
 ## Future
@@ -152,10 +155,6 @@ See examples.
 
 
 #### should
-- **uint16_t divmod10()** 16 bit overload version 
-- **uint32_t div10(x, \*d)** would be a bit faster 
-- **uint32_t mod10(x, \*m)** would be a bit faster too
-
 - unit tests
   - or examples that test a lot.
 - examples
@@ -167,9 +166,25 @@ See examples.
 - There are several divide functions to be included.
   div3(), div5(), div7(), div10(), mod10()
   These need more testing (range)
+- constants?
+  - GOLDEN_RATIO 1.61803398875
+
+#### TODO Functions
+
+DIV
+- **uint16_t divmod10()** 16 bit overload version 
+- **uint32_t div10(x, \*d)** would be a bit faster 
+- **uint32_t mod10(x, \*m)** would be a bit faster too
+- clock
+  - **divmod24** == div3 >>3   (minutes to days)
+  - **divmod12** == div3 >>2
+  - **divmod60** == div15 >>2  of div5 div3 >>2 (seconds to minutes + minutes to hours)
+- **div7** days - weeks.
+
+
+PING
 - **float ping2inch_tempF(uint16_t in, int Fahrenheit)**
 - **uint32_t ping2inch(uint32_t in)** + sixteenth
 - **uint32_t ping2sixteenth(uint32_t in)**
-- constants?
-  - GOLDEN_RATIO 1.61803398875
+
 
