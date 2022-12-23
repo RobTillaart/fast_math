@@ -6,6 +6,7 @@
 # Methods and Functions (KEYWORD2)
 divmod10	KEYWORD2
 
+dec2bcdRef	KEYWORD2
 dec2bcd	KEYWORD2
 dec2bcdRTC	KEYWORD2
 bcd2dec	KEYWORD2

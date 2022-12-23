@@ -25,9 +25,20 @@ void divmod10(uint32_t in, uint32_t &div, uint8_t &mod)
 }
 
 
-uint8_t dec2bcd(uint8_t value)
+uint8_t dec2bcdRef(uint8_t value)
 {
   return value + 6 * (value / 10);
+}
+
+
+uint8_t dec2bcd(uint8_t value)
+{
+  //  this trick works faster for range value = 0..100.
+  uint16_t a = value;
+  uint8_t  b = (a * 26) >> 8;   //  magic * 26 / 256 ~~ / 10
+  uint8_t  c = value + b * 6;
+  if ((c & 0x0F) == 0x0F) c -= 6;  //  correction above 60.
+  return c;
 }
 
 
@@ -35,8 +46,9 @@ uint8_t dec2bcdRTC(uint8_t value)
 {
   //  this trick works faster for range value = 0..60 (think RTC).
   uint16_t a = value;
-  uint8_t  b = (a * 26) >> 8;   // magic * 26 / 256 ~~ / 10
-  return value + b * 6;
+  uint8_t  b = (a * 26) >> 8;   //  magic * 26 / 256 ~~ / 10
+  uint8_t  c = value + b * 6;
+  return c;
 }
 
 
@@ -114,7 +126,7 @@ uint16_t ping2inch(uint16_t in)
   d >>= 2;  //  in >> 13
   q += d;
   d >>= 1;  //  in >> 14
-  q += d + 2;  //  correction. 
+  q += d + 2;  //  correction.
   return q;
 }
 
@@ -137,7 +149,7 @@ uint16_t ping2sixteenths(uint16_t in)
   d >>= 2;  //  in >> 12
   q += d;
   d >>= 2;  //  in >> 14
-  q += d + 2;  //  correction. 
+  q += d + 2;  //  correction.
   return q;
 }
 
@@ -183,7 +195,7 @@ uint32_t ping2mm32(uint32_t in)
 //  temperature in Celsius
 float ping2cm_temp(uint16_t duration, int Celsius )
 {
-  //  
+  //
   //  return duration * 331.45 * sqrt(1 + temp / 273.0) / 10000;
   //  return duration * 331.45 * sqrt(1 + temp * (1.0 / 273.0)) * 0.0001;
   //  return duration * 331.45 * (1 + temp * (1.0 / 546.0)) * 0.0001;  //  little less accurate sqrt
@@ -193,7 +205,7 @@ float ping2cm_temp(uint16_t duration, int Celsius )
 
 float ping2inch_temp(uint16_t duration, int Celsius )
 {
-  //  
+  //
   //  return duration * 331.45 * sqrt(1 + temp / 273.0) / 10000;
   //  return duration * 331.45 * sqrt(1 + temp * (1.0 / 273.0)) * 0.0001;
   //  return duration * 331.45 * (1 + temp * (1.0 / 546.0)) * 0.0001;  //  little less accurate sqrt

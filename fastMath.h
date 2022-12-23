@@ -3,7 +3,7 @@
 //    FILE: fastMath.h
 //  AUTHOR: Rob Tillaart
 // VERSION: 0.2.0
-// PURPOSE: Arduino collection of fast math algorithms
+// PURPOSE: Arduino library for fast math algorithms
 //     URL: https://github.com/RobTillaart/fastMath
 
 
@@ -40,6 +40,7 @@ void divmod10(uint32_t in, uint32_t &div, uint8_t &mod);
 //  ROUTINE: dec2bcd and bcd2dec
 //  PURPOSE: conversion
 //
+uint8_t dec2bcdRef(uint8_t value);   //  reference implementation.
 uint8_t dec2bcd(uint8_t value);
 uint8_t dec2bcdRTC(uint8_t value);
 uint8_t bcd2dec(uint8_t value);
