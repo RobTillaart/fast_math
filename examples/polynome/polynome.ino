@@ -11,7 +11,7 @@
 
 uint32_t start, stop;
 float x, y, z, sum, error;
-float y1, y2, y3;
+float YY1, YY2, YY3;
 float ar[3];
 
 void setup()
@@ -69,13 +69,13 @@ void search_linear()
         ar[0] = a;
         ar[1] = b;
         ar[2] = c;
-        y1 = polynome(10, ar, 2);
-        y2 = polynome(5, ar, 2);
-        y3 = polynome(3, ar, 2);
+        YY1 = polynome(10, ar, 2);
+        YY2 = polynome(5, ar, 2);
+        YY3 = polynome(3, ar, 2);
         error = 0;
-        error += (y1 - 42) * (y1 - 42);
-        error += (y2 -  3) * (y2 -  3);
-        error += (y3 -  3) * (y3 -  3);
+        error += (YY1 - 42) * (YY1 - 42);
+        error += (YY2 -  3) * (YY2 -  3);
+        error += (YY3 -  3) * (YY3 -  3);
         if (error < minimum)
         {
           minimum = error;
@@ -87,11 +87,11 @@ void search_linear()
           Serial.print("\t");
           Serial.print(c);
           Serial.print("\t");
-          Serial.print(y1, 3);
+          Serial.print(YY1, 3);
           Serial.print("\t");
-          Serial.print(y2, 3);
+          Serial.print(YY2, 3);
           Serial.print("\t");
-          Serial.print(y3, 3);
+          Serial.print(YY3, 3);
           Serial.print("\t");
           Serial.print(error, 6);
           Serial.print("\n");
@@ -118,15 +118,15 @@ void search_heat()
     ar[2] = c - 0.5 + random(10000) * 0.0001;
 
     // calculate the points.
-    y1 = polynome(10, ar, 2);
-    y2 = polynome(5, ar, 2);
-    y3 = polynome(3, ar, 2);
+    YY1 = polynome(10, ar, 2);
+    YY2 = polynome(5, ar, 2);
+    YY3 = polynome(3, ar, 2);
 
     // determine error squared
     error = 0;
-    error += (y1 - 42) * (y1 - 42);
-    error += (y2 -  3) * (y2 -  3);
-    error += (y3 -  3) * (y3 -  3);
+    error += (YY1 - 42) * (YY1 - 42);
+    error += (YY2 -  3) * (YY2 -  3);
+    error += (YY3 -  3) * (YY3 -  3);
     
     //  if new values is a better fit
     if (error < minimum)
@@ -145,11 +145,11 @@ void search_heat()
       Serial.print("\t");
       Serial.print(ar[2], 2);
       Serial.print("\t");
-      Serial.print(y1, 3);
+      Serial.print(YY1, 3);
       Serial.print("\t");
-      Serial.print(y2, 3);
+      Serial.print(YY2, 3);
       Serial.print("\t");
-      Serial.print(y3, 3);
+      Serial.print(YY3, 3);
       Serial.print("\t");
       Serial.print(error, 6);
       Serial.print("\n");
