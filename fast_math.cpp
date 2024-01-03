@@ -1,7 +1,7 @@
 //
 //    FILE: fast_math.cpp
 //  AUTHOR: Rob Tillaart
-// VERSION: 0.2.
+// VERSION: 0.2.3
 // PURPOSE: Arduino library for fast math algorithms
 //    DATE: 27 October 2013
 //     URL: https://github.com/RobTillaart/fast_math
