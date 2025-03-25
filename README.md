@@ -33,7 +33,7 @@ Also improvements or other fast code is welcome. Please open an issue.
 #### Related
 
 - https://github.com/RobTillaart/fastTrig Gonio functions (less exact but faster)
-
+- https://github.com/RobTillaart?tab=repositories&q=math
 
 ## Interface
 
@@ -189,6 +189,30 @@ a curve for a polynome of degree N. See example.
 
 Another application can be to implement a calibration / offset function that
 can be tuned (runtime).
+
+
+### Log2, log10, ln
+
+Less accurate but about 2 times faster, check if the accuracy and range matches 
+the requirements of your project.
+
+- **fastLog2(float value)** idem, "base" function for fastLog10() and fastLN()
+- **fastLog10(float value)** idem.
+- **fastLN(float value)** Logarithmus Naturalis, inverse of exp()
+
+Performance measured on Arduino UNO
+
+|  function   |   us   |  factor  |  notes  |
+|:------------|:------:|:--------:|:--------|
+|  log2       |   200  |    1.0   |  log2(x) = log10(x) x (1 / log10(2));
+|  fastLog2   |    68  |    2.9   |  as log2() is emulated this factor is too high
+|             |        |          |
+|  log10      |   168  |    1.0   |
+|  fastLog10  |    76  |    2.2   |
+|             |        |          |
+|  log        |   160  |    1.0   |
+|  fastLN     |    76  |    2.1   |
+
 
 
 ## Future

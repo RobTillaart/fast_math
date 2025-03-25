@@ -1,0 +1,17 @@
+UNO
+1.8.19
+
+log10_performance.ino
+FASTMATH_LIB_VERSION: 0.2.4
+
+Function	time	X	Y
+
+log2: 		220	16.807	4.070990
+fast2: 		68	16.807	4.071197
+log10: 		168	16.807	1.225490
+fast10: 	80	16.807	1.225552
+log: 		160	16.807	2.821795
+fastLn: 	80	16.807	2.821939
+
+done...
+
