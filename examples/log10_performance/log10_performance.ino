@@ -94,9 +94,9 @@ void setup()
   delay(100);
 
   start = micros();
-  y = fastLN(x);
+  y = fastLog(x);
   stop = micros();
-  Serial.print("fastLn: ");
+  Serial.print("fastLog: ");
   Serial.print("\t");
   Serial.print(stop - start);
   Serial.print("\t");

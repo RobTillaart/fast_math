@@ -372,7 +372,7 @@ float ping2inch_tempF(uint16_t duration, int Fahrenheit )
 
 ///////////////////////////////////////////////////////////
 //
-//  FAST LOG2 + LOG10 + LN
+//  FAST LOG2 + LOG10 + LOG
 //
 //  from: https://openaudio.blogspot.com/2017/02/faster-log10-and-pow.html
 //        and several other places.
@@ -411,8 +411,8 @@ float fastLog10(float x)
 }
 
 
-//  ln(x) = log2(x) * 0,6931471805599453f  //  ln(2)
-float fastLN(float x)
+//  log(x) = log2(x) * 0,6931471805599453f  //  log(2)
+float fastLog(float x)
 {
   int exponent;
   float value = frexpf(fabsf(x), &exponent);

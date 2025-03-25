@@ -191,14 +191,14 @@ Another application can be to implement a calibration / offset function that
 can be tuned (runtime).
 
 
-### Log2, log10, ln
+### Log2, log10, log
 
 Less accurate but about 2 times faster, check if the accuracy and range matches 
 the requirements of your project.
 
-- **fastLog2(float value)** idem, "base" function for fastLog10() and fastLN()
+- **fastLog2(float value)** idem, "base" function for fastLog10() and fastLog()
 - **fastLog10(float value)** idem.
-- **fastLN(float value)** Logarithmus Naturalis, inverse of exp()
+- **fastLog(float value)** Natural Logarithm, inverse of exp()
 
 Performance measured on Arduino UNO
 
@@ -211,7 +211,7 @@ Performance measured on Arduino UNO
 |  fastLog10  |    76  |    2.2   |
 |             |        |          |
 |  log        |   160  |    1.0   |
-|  fastLN     |    76  |    2.1   |
+|  fastLog    |    76  |    2.1   |
 
 
 

@@ -103,7 +103,7 @@ float ping2inch_tempF(uint16_t duration, int Fahrenheit);
 
 //////////////////////////////////////////////////////////
 //
-//  FAST LOG2 + LOG10 + LN
+//  FAST LOG2 + LOG10 + LOG
 //
 //  from: https://openaudio.blogspot.com/2017/02/faster-log10-and-pow.html
 //        and several other places.
@@ -111,11 +111,11 @@ float ping2inch_tempF(uint16_t duration, int Fahrenheit);
 //  y = C[0]*f*f*f + C[1]*f*f + C[2]*f + C[3] + exponent;
 float fastLog2(float x);
 
-//  log10(x) = log2(x) * 0.3010299956639812f  //  log(2)/log(10)
+//  log10(x) = log2(x) * 0.3010299956639812f  //  log10(2)
 float fastLog10(float x);
 
-//  ln(x) = log2(x)    * 1.4426950408889634f  //  log(2)/log(e)
-float fastLN(float x);
+//  log(x) = log2(x) * 0.6931471805599453f    //  log(2)
+float fastLog(float x);
 
 
 #ifdef __cplusplus

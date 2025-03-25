@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
 ## [0.2.4] - 2025-03-25
-- add fastLog2(), fastLog10(), fastLN()
+- add fastLog2(), fastLog10(), fastLog()
 - add example
 - update readme.md
 - minor edits

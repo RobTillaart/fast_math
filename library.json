@@ -1,6 +1,6 @@
 {
   "name": "fast_math",
-  "keywords": "divmod10,bcd2dec,dec2bcd,ping,log10,log2, ln",
+  "keywords": "divmod10,bcd2dec,dec2bcd,ping,log10,log2,log",
   "description": "Arduino library for fast math algorithms.",
   "authors":
   [

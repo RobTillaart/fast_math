@@ -36,7 +36,7 @@ ping2inch_tempF	KEYWORD2
 
 fastLog2	KEYWORD2
 fastLog10	KEYWORD2
-fastLN	KEYWORD2
+fastLog	KEYWORD2
 
 
 # Constants (LITERAL1)
