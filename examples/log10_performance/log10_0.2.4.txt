@@ -1,5 +1,5 @@
-UNO
-1.8.19
+BOARD:    UNO
+IDE:      1.8.19
 
 log10_performance.ino
 FASTMATH_LIB_VERSION: 0.2.4
@@ -14,4 +14,24 @@ log: 		160	16.807	2.821795
 fastLog: 	80	16.807	2.821939
 
 done...
+
+================================
+
+BOARD:    ESP32
+IDE:      1.8.19
+
+log10_performance.ino
+FASTMATH_LIB_VERSION: 0.2.4
+
+Function	time	X	Y
+
+log2: 		74	884.537	9.788778
+fast2: 		14	884.537	9.788513
+log10: 		16	884.537	2.946716
+fast10: 	6	884.537	2.946636
+log: 		16	884.537	6.785064
+fastLog: 	5	884.537	6.784880
+
+done...
+
 
