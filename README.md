@@ -19,12 +19,12 @@ Arduino library for fast math algorithms.
 The fast_math library is a collection of algorithms that are faster 
 than the default code. 
 These algorithms are to be used when you are in a need for speed. 
-Only tested on Arduino UNO as one of the "slower" boards.
+Only tested on Arduino UNO R3 as one of the "slower" boards.
 
-**Warning:** verify if the algorithms works for your project. (no warranty).
+**Warning:** verify if the algorithms works for your project / board. (no warranty).
 
 These algorithms are collected and improved over a long time, and started
-with improving decades ago when computers were slower than an Arduino UNO.
+with improving decades ago when computers were slower than an Arduino UNO R3.
 
 Note: I am interested in your feedback e.g. results on other platforms.
 Also improvements or other fast code is welcome. Please open an issue.
@@ -58,7 +58,7 @@ Limited to be used in RTC's. (in fact it does 0..68 correct)
 Backgrounder - https://forum.arduino.cc/t/faster-dec2bcd-routine-especial-for-rtc-libraries/180741/13
 
 
-Indicative performance Arduino UNO.
+Indicative performance Arduino UNO R3.
 
 |  function       |   us   |  factor |  notes  |
 |:----------------|:------:|:-------:|:--------|
@@ -75,12 +75,12 @@ Indicative performance Arduino UNO.
 Calculation of DIV and MOD simultaneous.
 
 - **void divmod10(uint32_t in, uint32_t \*div, uint8_t \*mod)**
-  - calculates both divide and modulo 10 faster than the default / 10 and % 10.
+  - calculates both divide and modulo 10 about 4 times faster than the default / 10 and % 10.
 
 The **divmod10()** function is very useful for extracting the individual digits.
 Typical use is to print digits on a display, in a file or send them as ASCII over a network.
 
-Indicative performance Arduino UNO.
+Indicative performance Arduino UNO R3.
 
 |  function  |   us   |  factor |  notes  |
 |:-----------|:------:|:-------:|:--------|
@@ -100,12 +100,30 @@ Backgrounder - https://forum.arduino.cc/t/divmod10-a-fast-replacement-for-10-and
 - **void divmod12(uint32_t in, uint32_t \*div, uint8_t \*mod)** for hours
 - **void divmod24(uint32_t in, uint32_t \*div, uint8_t \*mod)** for hours
 - **void divmod60(uint32_t in, uint32_t \*div, uint8_t \*mod)** for minutes seconds
+- **void divmod1000(uint32_t in, uint32_t \*div, uint16_t \*mod)** for splitting millis
+in seconds and "decimal part" the real millis.
+
+
+Indicative performance Arduino UNO R3.
+
+|  function    |   us   |  factor |  notes  |
+|:-------------|:------:|:-------:|:--------|
+|  divide      |  38.2  |   1.0   |  fixed for any number.
+|  modulo      |  38.1  |   1.0   |  fixed for any number.
+|  divmod3     |  20    |   1.9   |  
+|  divmod5     |  20    |   1.9   |
+|  divmod10    |   9.1  |   4.1   |
+|  divmod12    |  24    |   1.6   |
+|  divmod24    |  24    |   1.6   |
+|  divmod60    |  12    |   3.1   |
+|  divmod1000  |  20    |   1.9   |
 
 
 For every element of N (natural numbers) one could develop a divmodN() function.
 The idea is to split the fraction 1/N into a sum of selected 1/(2^n) so the division 
 becomes a series of adds and shifts. 
 Sometimes there are patterns that can be optimized even more.
+Still some numbers can be optimized better than others.
 
 Furthermore for limited ranges a division can be replaced by a single multiply shift pair.
 
@@ -141,7 +159,7 @@ Imperial
 - **uint16_t ping2sixteenths(uint16_t in)**
 
 
-Indicative performance Arduino UNO (0.2.1) and ESP32 (0.2.4).
+Indicative performance Arduino UNO R3 (0.2.1) and ESP32 (0.2.4).
 
 |  function         |   us   |  factor  |   us   |  factor  |  notes  |
 |:------------------|:------:|:--------:|:------:|:--------:|:--------|
@@ -169,7 +187,7 @@ The temperature is in whole degrees C or F.
 - **float ping2inch_tempF(uint16_t duration, int Fahrenheit)**
 
 
-Indicative performance Arduino UNO.
+Indicative performance Arduino UNO R3.
 
 |  function         |   us   |  factor  |  notes  |
 |:------------------|:------:|:--------:|:--------|
@@ -203,7 +221,7 @@ and range matches the requirements of your project.
 - **fastLog10(float value)** idem.
 - **fastLog(float value)** Natural Logarithm, inverse of exp()
 
-Indicative performance measured on Arduino UNO and ESP32 (0.2.4)
+Indicative performance measured on Arduino UNO R3 and ESP32 (0.2.4)
 
 |  function   |   us   |  factor  |   us   |  factor  |  notes  |
 |:------------|:------:|:--------:|:------:|:--------:|:--------|
@@ -230,6 +248,7 @@ Indicative performance measured on Arduino UNO and ESP32 (0.2.4)
   - check output examples.
 - keep investigating faster versions.
 - **divmod()** performance table other versions
+- investigate fast **int64_t pow64(int, int)** and **int32_t pow32(int, int)**
 
 #### Could
 
