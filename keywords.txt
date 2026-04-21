@@ -13,6 +13,7 @@ divmod24	KEYWORD2
 divmod60	KEYWORD2
 
 divmod1000	KEYWORD2
+divmod360	KEYWORD2
 
 dec2bcdRef	KEYWORD2
 dec2bcd	KEYWORD2

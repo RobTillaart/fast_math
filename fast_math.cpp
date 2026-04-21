@@ -113,26 +113,33 @@ void divmod1000(uint32_t in, uint32_t *div, uint16_t *mod)
 //  work in progress
 void divmod360(uint32_t in, uint32_t *div, uint16_t *mod)
 {
-  uint32_t n = in >> 9;
-  uint32_t q = n;   //  q = in / 512 starting point.
+  uint32_t n = in;
+  n = (in >> 8);
+  uint32_t q = n;   //  q = in / 256
   n >>= 2; q += n;
   n >>= 1; q += n;
   n >>= 2; q += n;
   n >>= 1; q += n;
-  uint16_t p = n >> 1;  //  16 bit math from here.
+  uint16_t p = n >> 2;  //  16 bit math from here.
   p >>= 5; q += p;
   p >>= 2; q += p;
   p >>= 1; q += p;
   p >>= 2; q += p;
   p >>= 1; q += p;
-
+  q >>= 1;
   n = q * 360UL;
-  while (n < in) { q++; n += 360; };
-  while (n > in) { q--; n -= 360; };
+  //  rounding ...
+  while (n < in) {
+    q++;
+    n += 360;
+  };
+  while (n > in) {
+    q--;
+    n -= 360;
+  };
   *div = q;
   *mod = in - n;
 }
-
 
 
 ///////////////////////////////////////////////////////////

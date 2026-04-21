@@ -24,11 +24,13 @@ extern "C"
 {
 #endif
 
+
+//////////////////////////////////////////////////////////////////////////
 //
 //  WORK IN PROGRESS
 //
 //  reduce an angle ( > 0)
-//  not yet fast enough
+//  only marginally faster on UNO R3
 void divmod360(uint32_t in, uint32_t *div, uint16_t *mod);
 
 

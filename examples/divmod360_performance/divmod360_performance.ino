@@ -10,7 +10,7 @@
 
 
 uint32_t start, stop;
-uint32_t x, d;
+volatile uint32_t x, d;
 uint16_t m;
 
 
@@ -26,8 +26,11 @@ void setup()
 
   x = random(4000000000ULL);
   start = micros();
-  d = x / 360;
-  m = x % 360;
+  for (int i = 0; i < 1000; i++)
+  {
+    d = x / 360;
+    m = x % 360;
+  }
   stop = micros();
   Serial.print("div + mod: ");
   Serial.print("\t");
@@ -42,7 +45,10 @@ void setup()
   delay(100);
 
   start = micros();
-  divmod360(x, &d, &m);
+  for (int i = 0; i < 1000; i++)
+  {
+    divmod360(x, &d, &m);
+  }
   stop = micros();
   Serial.print("divmod360:  ");
   Serial.print("\t");

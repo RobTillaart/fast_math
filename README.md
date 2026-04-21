@@ -39,6 +39,15 @@ Feedback as always is welcome.
 - https://github.com/RobTillaart?tab=repositories&q=math
 
 
+### Work in progress
+
+This function is work in progress and should only be used with care.
+It is released as performance is now roughly on par with / and % calls.
+
+- **void divmod360()** by far not fast enough (UNO R3).
+Furthermore for reducing angles only mod360() is needed.
+
+
 ## Interface
 
 ```cpp

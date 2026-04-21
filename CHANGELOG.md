@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [0.2.6] - 2026-04-20
 - add divmod1000()
+- add divmod360() - work in progress (not fast enough yet)
 - update readme.md
 - minor edits
 
