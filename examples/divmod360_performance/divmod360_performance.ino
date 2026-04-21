@@ -10,7 +10,8 @@
 
 
 uint32_t start, stop;
-volatile uint32_t x, d;
+volatile uint32_t x;
+uint32_t d;
 uint16_t m;
 
 
